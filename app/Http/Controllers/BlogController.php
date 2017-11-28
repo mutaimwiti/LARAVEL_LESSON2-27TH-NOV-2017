@@ -46,8 +46,10 @@ class BlogController extends Controller
 
     }
 
-    public function destroy()
+    public function destroy($blog)
     {
-
+        $blog = Blog::where(['user_id'=> Auth::id(), 'id' => $blog])->first();
+        $blog->delete();
+        return redirect()->back();
     }
 }
