@@ -30,9 +30,10 @@ class BlogController extends Controller
 
     }
 
-    public function show()
+    public function show($blog)
     {
-
+        $blog = Blog::where(['user_id'=> Auth::id(), 'id' => $blog])->first();
+        return view('blog', compact('blog'));
     }
 
     public function edit()
