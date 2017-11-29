@@ -39,14 +39,19 @@ class BlogController extends Controller
         return view('blog', compact('blog'));
     }
 
-    public function edit()
+    public function edit($blog)
     {
-
+        $blog = Blog::find($blog);
+        return view('edit', compact('blog'));
     }
 
-    public function update()
+    public function update($blog)
     {
-
+        $blog = Blog::find($blog);
+        $blog->title = Input::get('title');
+        $blog->body = Input::get('body');
+        $blog->save();
+        return redirect()->route('blogs.index');
     }
 
     public function destroy($blog)
