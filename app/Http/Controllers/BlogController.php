@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use App\Mail\BlogMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 
 class BlogController extends Controller
 {
@@ -27,9 +29,13 @@ class BlogController extends Controller
 
     public function store()
     {
-        $input = Input::all();
-        $input['user_id'] = Auth::id();
-        Blog::create($input);
+        $blog = new Blog([
+            'title' => Input::get('title'),
+            'body' => Input::get('body'),
+            'user_id' => Auth::id()
+        ]);
+        $blog->save();
+        Mail::send(new BlogMail($blog));
         return redirect()->back();
     }
 
