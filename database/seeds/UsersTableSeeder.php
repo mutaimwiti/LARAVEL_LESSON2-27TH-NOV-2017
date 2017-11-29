@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         factory(App\User::class, 5)->create()->each(function($user) {
-            foreach(range(1,5) as $i){
+            foreach(range(1,15) as $i){
                 $user->blogs()->save(factory(App\Blog::class)->make());
             }
         });
