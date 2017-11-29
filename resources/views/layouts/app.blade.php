@@ -36,7 +36,8 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="{{route('blogs.index')}}">My blogs</a> </li>
+                        &nbsp;<li><a href="{{route('blogs.create')}}">Create blog</a> </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
