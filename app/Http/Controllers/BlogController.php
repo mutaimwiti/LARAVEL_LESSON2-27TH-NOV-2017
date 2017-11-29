@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class BlogController extends Controller
 {
@@ -22,12 +22,15 @@ class BlogController extends Controller
 
     public function create()
     {
-
+        return view('create');
     }
 
     public function store()
     {
-
+        $input = Input::all();
+        $input['user_id'] = Auth::id();
+        Blog::create($input);
+        return redirect()->back();
     }
 
     public function show($blog)
