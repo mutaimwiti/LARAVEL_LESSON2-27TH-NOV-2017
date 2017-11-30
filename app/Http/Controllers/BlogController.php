@@ -18,18 +18,18 @@ class BlogController extends Controller
     public function all()
     {
         $blogs = Blog::where('user_id', '<>', Auth::id())->paginate(10);
-        return view('all', compact('blogs'));
+        return view('blogs.all', compact('blogs'));
     }
 
     public function index()
     {
         $blogs = Blog::where('user_id', Auth::id())->paginate(10);
-        return view('blogs', compact('blogs'));
+        return view('blogs.blogs', compact('blogs'));
     }
 
     public function create()
     {
-        return view('create');
+        return view('blogs.create');
     }
 
     public function store()
@@ -47,13 +47,13 @@ class BlogController extends Controller
     public function show($blog)
     {
         $blog = Blog::where('id', $blog)->first();
-        return view('blog', compact('blog'));
+        return view('blogs.blog', compact('blog'));
     }
 
     public function edit($blog)
     {
         $blog = Blog::find($blog);
-        return view('edit', compact('blog'));
+        return view('blogs.edit', compact('blog'));
     }
 
     public function update($blog)
