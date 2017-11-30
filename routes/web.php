@@ -17,4 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('blogs/all', 'BlogController@all')->name('blogs.all');
+
 Route::resource('blogs', 'BlogController');

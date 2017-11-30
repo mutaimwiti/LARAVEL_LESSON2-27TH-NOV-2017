@@ -12,9 +12,14 @@ class BlogController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['all', 'show']);
     }
 
+    public function all()
+    {
+        $blogs = Blog::where('user_id', '<>', Auth::id())->paginate(10);
+        return view('all', compact('blogs'));
+    }
 
     public function index()
     {
@@ -41,7 +46,7 @@ class BlogController extends Controller
 
     public function show($blog)
     {
-        $blog = Blog::where(['user_id'=> Auth::id(), 'id' => $blog])->first();
+        $blog = Blog::where('id', $blog)->first();
         return view('blog', compact('blog'));
     }
 
