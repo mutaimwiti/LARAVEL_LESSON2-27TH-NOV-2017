@@ -38,7 +38,7 @@
 
                         @else
 
-                            <div class="alert alert-danger">You don't have any blogs!</div>
+                            <div class="alert alert-danger">There are no blogs!</div>
 
                         @endif
                     </div>
