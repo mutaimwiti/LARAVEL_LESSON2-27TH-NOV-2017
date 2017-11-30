@@ -36,9 +36,13 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{route('blogs.all')}}">All blogs</a> </li>
-                        <li><a href="{{route('blogs.index')}}">My blogs</a> </li>
-                        <li><a href="{{route('blogs.create')}}">Create blog</a> </li>
+                        @guest
+                                <li><a href="{{route('blogs.all')}}">Blogs</a> </li>
+                            @else
+                                <li><a href="{{route('blogs.all')}}">All Blogs</a> </li>
+                                <li><a href="{{route('blogs.index')}}">My blogs</a> </li>
+                                <li><a href="{{route('blogs.create')}}">Create blog</a> </li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
